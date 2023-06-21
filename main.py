@@ -23,6 +23,8 @@ if __name__ == "__main__":
         with open("data/csv/" + file + ".csv", "w") as f:
             f.write(results.decode("utf-8"))
         # Download the full tree
-        download.download_full_tree(cellarId, file)
+        download.download_full_tree(cellarId, file, "tree")
+        download.download_full_tree(cellarId, file, "object")
+        
         print("Saved " + file + " to csv")
     
