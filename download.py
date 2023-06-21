@@ -31,12 +31,12 @@ def download_rdf_from_csv(csv_file_path):
 def download_full_tree(cellarId, file, what="tree"):
     # Remove what is after the . in the cellarId
     cellarId = cellarId.split(".")[0]
-    if what = "tree":
+    if what == "tree":
         url = "https://publications.europa.eu/resource/cellar/" + cellarId + "/rdf/tree/full"
         response = requests.get(url)
         with open("data/tree/" + file, "wb") as f:
             f.write(response.content)
-    elif what = "object":
+    elif what == "object":
         url = "https://publications.europa.eu/resource/cellar/" + cellarId + "/rdf/object/full"    
         response = requests.get(url)
         with open("data/object/" + file, "wb") as f:

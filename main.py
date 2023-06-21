@@ -7,9 +7,22 @@ import sparql
 import download
 import os
 
+
+
 # Use the cellarId to make a SPARQL query
 # Save the results of the SPARQL query to a csv file
 if __name__ == "__main__":
+    
+    # if not existing, create the folder data/rdf, data/csv, data/tree, data/object
+    if not os.path.exists("data/rdf"):
+        os.makedirs("data/rdf")
+    if not os.path.exists("data/csv"):
+        os.makedirs("data/csv")
+    if not os.path.exists("data/tree"):
+        os.makedirs("data/tree")
+    if not os.path.exists("data/object"):
+        os.makedirs("data/object")
+
     # Download the rdf files from the csv file
     download.download_rdf_from_csv("data/RCL.csv")
     print("Downloaded all rdf files")
