@@ -5,10 +5,12 @@ def extract_rdf_about(xml_data):
 
     rdf_descriptions = root.findall(".//{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description")
 
-    if len(rdf_descriptions) >= 2:
-        second_rdf_description = rdf_descriptions[1]
-        rdf_about = second_rdf_description.attrib.get("{http://www.w3.org/1999/02/22-rdf-syntax-ns#}about")
-        return rdf_about
+    # Among the rdf:Description elements, find the one that has the second to last element of the rdf:about attribute equal to "cellar"
+    for rdf_description in rdf_descriptions:
+        rdf_about = rdf_description.attrib["{http://www.w3.org/1999/02/22-rdf-syntax-ns#}about"]
+        rdf_about_split = rdf_about.split("/")
+        if rdf_about_split[-2] == "cellar":
+            return rdf_about_split[-1]
 
     return None
 
@@ -19,7 +21,3 @@ def extract_rdf_about_from_file(file_path):
         return extract_rdf_about(xml_data)
     
     return None
-
-if __name__ == "__main__":
-    rdf_about = extract_rdf_about_from_file("data/31968L0193.rdf")
-    print(rdf_about)

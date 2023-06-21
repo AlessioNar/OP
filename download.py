@@ -18,18 +18,13 @@ def download_rdf_from_csv(csv_file_path):
         reader = csv.DictReader(f)
         for row in reader:
             url = base_url + row["celex"]            
-            file_path = 'data/'+ row["celex"] + '.rdf'
+            file_path = 'data/rdf/'+ row["celex"] + '.rdf'
             # check if file exists with 
             if os.path.isfile(file_path):
                 pass
             else:
                 download_rdf_from_url(url, file_path)
     return None
-
-
-if __name__ == "__main__":
-    download_rdf_from_csv("data/RCL.csv")
-    #download_rdf_from_url("http://publications.europa.eu/resource/celex/32004R0866", "data/32004R0866.rdf")
 
 
 
