@@ -28,5 +28,12 @@ def download_rdf_from_csv(csv_file_path):
 
 
 
-
-    
+def download_full_tree(cellarId, file):
+    # Remove what is after the . in the cellarId
+    cellarId = cellarId.split(".")[0]
+    url = "https://publications.europa.eu/resource/cellar/" + cellarId + "/rdf/tree/full"
+    print(url)
+    response = requests.get(url)
+    with open("data/full_tree/" + file, "wb") as f:
+        f.write(response.content)
+    return None

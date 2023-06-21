@@ -22,5 +22,7 @@ if __name__ == "__main__":
         # Save the results of the SPARQL query to a csv file
         with open("data/csv/" + file + ".csv", "w") as f:
             f.write(results.decode("utf-8"))
+        # Download the full tree
+        download.download_full_tree(cellarId, file)
         print("Saved " + file + " to csv")
     
